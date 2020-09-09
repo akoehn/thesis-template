@@ -15,3 +15,15 @@ generate the bibliography.
 
 The bibliography style slightly differs from my dissertation and is
 more in line with the ACL style.
+
+The Makefile
+------------
+
+The Makefile automatically builds the latex code using `latexmk`.  It
+records missing files and tries to generate them.  This means that you
+can have a file `image.svg` include it with
+`\includegraphics{image.pdf}` and the Makefile will automatically call
+inkscape to convert the SVG to PDF.
+
+Please don't treat the Makefile as some magic, it only helps you in
+the long run if you understand what's going on.
