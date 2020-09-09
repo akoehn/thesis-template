@@ -1,0 +1,206 @@
+\documentclass[
+11pt
+,english
+,a4paper
+% Binding CORrection. How many mm are "lost" in the binding of the physical thesis.
+% 12mm is appropriate for ~200 pages and adhesive binding. Use 0 for ring binding
+% and reasonable values for adhesive binding of fewer pages.
+,BCOR=12mm
+% This is a MUST. I hate hate hate to read or correct single-sided printed theses.
+,twoside
+,headsepline,footsepline % also activates headinclude and footinclude
+,fleqn
+,chapterprefix=true
+,titlepage
+]{scrbook}
+
+% For PDF/a compatibility
+\usepackage[a-2b]{pdfx}
+
+% lualatex: fontspec enables the use of system-installed TTF and OTF
+% fonts.
+\usepackage{fontspec}
+% I like that font, feel free to use a different one
+\setmainfont{Linux Libertine O}
+
+% set the language for correct hyphenation etc.
+\usepackage[english]{babel}
+
+% booktabs for tables is a must
+\usepackage{booktabs}
+% microtype moves characters around a tiny bit to make
+% everything more pleasing.
+\usepackage{microtype}
+
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+% make latex complain if you use a non-amsmath environment for math.
+% That way, math environments look consistent.
+\usepackage[all]{onlyamsmath}
+
+% move footnotes over , and .
+% punctuations marks have to follow the footnote\footnote{foo}, like this.
+\usepackage{fnpct}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% The biblatex configuration is a bit complex and in its own file
+\input biblatex_config.tex
+
+
+\addbibresource{bibliography.bib}
+
+% hyperref is already setup by pdfx.
+% This makes links invisible -- deactivate if you want to have
+% links in dark blue.
+\hypersetup{hidelinks}
+
+% The following packages are the ones I used in my dissertation.
+
+\usepackage{amsthm}
+
+\usepackage{placeins}
+\usepackage{paralist}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{subcaption}
+
+\usepackage{csquotes}
+
+\usepackage{covington}
+
+\usepackage{tikz}
+\usetikzlibrary{babel}
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes}
+\usetikzlibrary{matrix}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{positioning}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{shadows.blur}
+
+\usepackage[linguistics]{forest}
+\forestset{pad/.style={minimum width=5em}}
+
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\SetKw{KwNull}{null}
+\usepackage{listings}
+
+\usepackage{nicefrac}
+\usepackage{caption}
+\usepackage{dcolumn}
+\newcolumntype{d}{D{.}{.}{2}}
+
+\usepackage{adjustbox}
+
+% If you want to have definitions or theorems,
+% define them here.
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}
+
+
+% Lualatex does not convert classic latex
+% ligatures by default (e.g. -- -> – or `` -> “)
+% Enable this again.
+\defaultfontfeatures{Ligatures=TeX}
+
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{paralist}
+\usepackage{nicefrac}
+\usepackage{textcomp} % \texttildelow
+\usepackage{array}
+\usepackage{graphicx}
+
+
+\usepackage{relsize}
+\usepackage{tipa,extraipa}
+\usepackage{wrapfig}
+
+\usepackage{stmaryrd} % apt install texlive-science
+\usepackage{comment}
+\usepackage{relsize}
+\usepackage{subcaption}
+
+% use \todo for todos you have.
+% replace with
+% \usepackage[disable]{todonotes}
+% to disable the todos and get a clean PDF.
+\usepackage{todonotes}
+% \itodo as an inline box todo.
+\newcommand{\itodo}[1]{\todo[inline]{#1}}
+
+\renewcommand{\example}[1]{\emph{#1}}
+
+% In case you want to point somewhere with tikz
+% this is a handy if you want to create overlay
+% arrows to a specific part of a text.
+\newcommand\ncoord[2][0,0]{%
+    \tikz[remember picture,overlay]{\path (#1) coordinate (#2);}%
+}
+
+% i.e. and e.g. have a small space between them.
+% use \ie{} and \eg{} to disable extra space after
+% "e.g." and "i.e.".
+\newcommand\ie{i.\,e.}
+\newcommand\eg{e.\,g.}
+
+
+\newcommand{\assign}{\leftarrow}
+
+
+% If the hyphenation of a word is wrong, manually correct it like this:
+\hyphenation{ana-ly-sis}
+\hyphenation{in-cre-men-tal}
+
+\author{Arne Köhn}
+\date{2019}
+\title{Predictive Dependency Parsing}
+\subtitle{Dissertation an der Universität Hamburg}
+\publishers{Fakultät für Mathematik, Informatik und
+  Naturwissenschaften, Fachbereich Informatik}
+\uppertitleback{%
+You can thank people here if you want.
+}
+
+\lowertitleback{Supervisors: Foo and Bar
+  \vspace{4ex}\\
+  % Place your work under a permissive license so others can easily
+  % build upon it.
+  This work is licensed under a Creative Commons 
+  Attribution 4.0 International License.
+
+  % Make your material available, it helps others!
+  Supplementary material is available under \url{https://example.com}.
+}
+
+
+\begin{document}
+
+    \maketitle
+
+\include{abstract}
+
+\tableofcontents
+
+% enable this to print a list of all todos in the front.
+% \listoftodos
+
+% overall introduction, motivation
+\include{intro}
+% Add more chapters as includes.
+
+\printbibliography
+
+\appendix
+
+\chapter{Whatever you need to have in an appendix}
+
+\end{document}
+
+% Local Variables:
+% TeX-engine: luatex
+% End:
